@@ -1,8 +1,6 @@
 $ npm install -g create-react-app
 
-
 $ create-react-app hello-axios
-
 
 $ cd /$/
 
