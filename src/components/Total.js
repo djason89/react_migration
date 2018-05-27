@@ -9,25 +9,27 @@ class Total extends Component {
       stepname:"",
       userUnit:"",
       userId:"",
+      resultk:"",
       inputfield: "no value"
     };
-    this.handleClick = this.handleClick.bind(this);
-    this.testRequest = this.testRequest.bind(this);
 
     this.updateStepName = this.updateStepName.bind(this);
     this.updateUserUnit = this.updateUserUnit.bind(this);
     this.updateUserId = this.updateUserId.bind(this);
+
   }
 
-  handleClick() {
+  handleClick = async() => {
     alert(this.state.stepName +"/"+this.state.userUnit + "/"+ this.state.userId);
   }
-  testRequest(){
-    const result = service.getTitle("innnnnput");
-    result.then(function(response){
-      console.log(response);
-      alert(response.data.data);
-    });
+
+  testRequest = async (id) => {
+    const migrationResult = await Promise.all([
+      service.getTitle("inputtttttttttt222")
+    ]);
+    console.log(migrationResult[0].data.data);
+
+    this.setState({resultk:migrationResult[0].data.data});
   }
 
   updateStepName (event){
@@ -91,12 +93,12 @@ class Total extends Component {
           </textarea>
         </form>
 
+        <br/><br/>
 
         <p> 전체 마이그레이션 (user-> calendar -> schedule) <button className="ui button active" onClick={this.testRequest}>Trigger</button> </p>
-        <form className="ui form">
-          <textarea placeholder="Tell us more" rows="3">
-          </textarea>
-        </form>
+        <div className="ui form">
+          <textarea placeholder="Tell us more" rows="3" value={this.state.resultk}/>
+        </div>
 
       </div>
     );
